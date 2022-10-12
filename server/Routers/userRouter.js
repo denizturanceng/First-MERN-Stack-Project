@@ -50,16 +50,14 @@ router.post("/signin", async (req,res)=>{
         return res.status(400).json({ message: error.message })
     }
 })
-// localhost:5000/create_todo POST request
+// localhost:5000/users/create_todo POST request
 router.post("/create_todo", async(req,res)=>{
     try {
-        const {todoId, userId, todoName, deadline } = req.body;
-        const todoExists = await ToDo.findOne({ todoId })
+        const {todoName, deadline } = req.body;
+        const todoExists = await ToDo.findOne({ todoName })
         if(todoExists)
             return res.status(400).json({ message: 'Todo already exists.'})
         const createdTodo = await ToDo.create({
-            todoId,
-            userId,
             todoName,
             deadline,
         })
@@ -71,15 +69,15 @@ router.post("/create_todo", async(req,res)=>{
     }
 
 })
-// localhost:5000/delete_todo DELETE request
+// localhost:5000/users/delete_todo DELETE request
 router.delete("/delete_todo", async(req,res) => {
     try {
-        const {todoId, userId, todoName, deadline } = req.body;
-        const deletedTodo = await ToDo.delete({
-            todoId,
-            userId,
+        const {todoName} = req.body;
+        const todo = await User.findOne({todoName})
+        if(!todo)
+            return res.status(400).json({message: "todo does not exist"})
+        const deletedTodo = await ToDo.deleteOne({
             todoName,
-            deadline,
         })
         return res.status(200).json(deletedTodo)
 

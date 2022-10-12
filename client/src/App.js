@@ -15,9 +15,9 @@ function App() {
        <main className='py-3'>
         <Container>
           <Routes>
-            <Route path='/' element={<HomeScreen />} exact></Route>
+            <Route path='/' element={<HomeScreen setUser={setUser}/>} exact></Route>
             <Route path='/registeration' element={<RegisterationScreen setUser={setUser}/>}></Route>
-            <Route path='/todo' element={<ToDoScreen />}></Route>
+            <Route path='/todo' element={<ToDoScreen setUser={setUser}/>}></Route>
           </Routes>
         </Container>
        </main>
