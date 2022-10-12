@@ -7,11 +7,13 @@ import ToDo from '../models/todoModel.js';
 
 const router = express.Router();
 
+
 // localhost:5000/users 'a yapılan post isteği
 router.post("/signup", async (req, res)=>{
     try {
         //console.log(req.body)
-        const {userID ,fullname, password, email } = req.body;
+        const {uniqueId, fullname, password, email } = req.body;
+        
         
         const userExists = await User.findOne({ email })
         if(userExists)
@@ -20,7 +22,7 @@ router.post("/signup", async (req, res)=>{
         const hashedPassword = await bcrypt.hash(password, 10)
 
         const createdUser = await User.create({
-            userID,
+            uniqueId,
             fullname,
             email,
             password: hashedPassword,
@@ -53,11 +55,12 @@ router.post("/signin", async (req,res)=>{
 // localhost:5000/todos/create_todo POST request
 router.post("/create_todo", async(req,res)=>{
     try {
-        const {todoName, deadline } = req.body;
+        const {userID, todoName, deadline } = req.body;
         const todoExists = await ToDo.findOne({ todoName })
         if(todoExists)
             return res.status(400).json({ message: 'Todo already exists.'})
         const createdTodo = await ToDo.create({
+            
             todoName,
             deadline,
         })
