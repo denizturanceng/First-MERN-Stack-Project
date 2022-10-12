@@ -1,6 +1,5 @@
 import React from 'react'
-import { Navbar, Nav, Container, Button, NavDropdown} from 'react-bootstrap'
-import { Link } from "react-router-dom";
+import { Navbar,Container, Button,} from 'react-bootstrap'
 
 const Header = ({user, setUser}) => {
     return (

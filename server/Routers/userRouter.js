@@ -50,7 +50,7 @@ router.post("/signin", async (req,res)=>{
         return res.status(400).json({ message: error.message })
     }
 })
-// localhost:5000/users/create_todo POST request
+// localhost:5000/todos/create_todo POST request
 router.post("/create_todo", async(req,res)=>{
     try {
         const {todoName, deadline } = req.body;
@@ -69,7 +69,7 @@ router.post("/create_todo", async(req,res)=>{
     }
 
 })
-// localhost:5000/users/delete_todo DELETE request
+// localhost:5000/todos/delete_todo DELETE request
 router.delete("/delete_todo", async(req,res) => {
     try {
         const {todoName} = req.body;
