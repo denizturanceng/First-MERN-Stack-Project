@@ -3,6 +3,6 @@ server tarafı =>
   
 client tarafı =>
   header layoutını sign in den sonra değiştiremedim. yani giriş yapmadan önce register varken giriş yaptıktan sonra sağ üstte log out olmalıydı, kodu kendimce yazdım ama olmadı.
-  todoların listelenmesi eksik. delete butonu için onsubmit methodu yazılacak.
+  todoların listelenmesi eksik. delete butonu için onsubmit methodu yazılacak. Ayrıca kontrol yapılmadan buttonlar navigate oluyor.
   
   
